@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0b0f19">
+    <title>Adega do Bairro - Cardápio Digital</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Banner e Topo -->
+        <header class="header-hero">
+            <img src="assets/images/banner.jpg" alt="Adega do Bairro" class="hero-banner-img">
+            <div class="hero-overlay"></div>
+            
+            <div class="top-actions">
+                <span class="badge-tag">
+                    <span>⚡ Entrega Rápida</span>
+                </span>
+                <div class="top-right-btns">
+                    <button class="btn-icon-blur" id="btnThemeToggle" title="Alternar Tema Claro/Escuro" onclick="toggleTheme()">
+                        🌙
+                    </button>
+                    <button class="btn-icon-blur" id="btnOpenInfo" title="Informações e Horários" onclick="document.getElementById('infoModal').classList.add('active')">
+                        ℹ️
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Perfil da Adega -->
+        <div class="store-profile">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="store-avatar">A</div>
+                    <div class="store-details">
+                        <h1 class="store-title">Adega do Bairro</h1>
+                        <div id="statusBadge" class="status-badge status-open" title="Clique para ver todos os horários">
+                            <span class="status-dot pulse"></span> Carregando horário...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="store-meta-pills">
+                    <div class="meta-pill" id="hoursPill">
+                        <span>🕒</span> Horários
+                    </div>
+                    <div class="meta-pill" onclick="scrollToLocation()">
+                        <span>📍</span> Onde Estamos
+                    </div>
+                    <div class="meta-pill" onclick="document.getElementById('cartModal').classList.add('active')">
+                        <span>🛵</span> Pedir Agora
+                    </div>
+                    <div class="meta-pill" onclick="window.open('https://wa.me/5511999999999', '_blank')">
+                        <span>💬</span> WhatsApp
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Campo de Pesquisa -->
+        <div class="search-container">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar cervejas, combos, destilados, vinhos..." autocomplete="off">
+                <button id="searchClear" class="search-clear" title="Limpar">✕</button>
+            </div>
+        </div>
+
+        <!-- Abas de Categorias Fixas com Indicador de Rolagem Lateral -->
+        <nav class="sticky-tabs-wrapper">
+            <div class="tabs-nav-container">
+                <button class="tabs-scroll-arrow left" id="tabsScrollLeft" title="Rolar categorias para esquerda" aria-label="Rolar para esquerda">
+                    ‹
+                </button>
+                <div class="tabs-fade-left" id="tabsFadeLeft"></div>
+                
+                <div class="tabs-scroll" id="tabsScroll">
+                    <!-- Abas geradas dinamicamente via JS -->
+                </div>
+                
+                <div class="tabs-fade-right" id="tabsFadeRight"></div>
+                <button class="tabs-scroll-arrow right" id="tabsScrollRight" title="Ver mais categorias" aria-label="Mais categorias">
+                    <span>›</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Conteúdo do Cardápio -->
+        <main class="menu-content" id="menuContent">
+            <!-- Categorias e Itens gerados dinamicamente via JS com fotos à esquerda -->
+        </main>
+
+        <!-- Seção / Card de Localização da Loja -->
+        <section class="store-location-card" id="storeLocationCard">
+            <div class="location-card-header">
+                <div class="location-icon-badge">📍</div>
+                <div>
+                    <h2 class="location-card-title">Localização da Adega</h2>
+                    <p class="location-card-subtitle">Retirada no balcão e base para entregas</p>
+                </div>
+            </div>
+
+            <div class="location-card-body">
+                <div class="location-address-box" id="locationCardAddress">
+                    <!-- Endereço renderizado dinamicamente via JS -->
+                </div>
+
+                <div class="location-actions">
+                    <a href="https://maps.google.com/?q=Adega+do+Bairro" target="_blank" class="btn-location-map" id="btnLocationMaps">
+                        🗺️ Abrir no Maps
+                    </a>
+                    <button class="btn-copy-address" id="btnCopyAddress" onclick="copyStoreAddress()">
+                        📋 Copiar Endereço
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé Informativo -->
+        <footer class="footer-info">
+            <div class="footer-brand">Adega do Bairro</div>
+            
+            <div class="hours-list">
+                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                    <span>🕒</span> Horários de Atendimento
+                </div>
+                <div class="hours-row">
+                    <span>Segunda a Quinta:</span>
+                    <strong>16h às 0h</strong>
+                </div>
+                <div class="hours-row">
+                    <span>Sexta e Sábado:</span>
+                    <strong>16h às 2h</strong>
+                </div>
+                <div class="hours-row">
+                    <span>Domingo:</span>
+                    <strong>14h às 22h</strong>
+                </div>
+            </div>
+
+            <p style="font-size: 0.78rem; color: var(--text-muted); max-width: 380px;">
+                Bebidas alcoólicas proibidas para menores de 18 anos (Lei 13.106/2015).
+            </p>
+
+            <button class="manage-mode-toggle" id="toggleManageModeBtn" onclick="toggleManageMode()">
+                ⚙️ Modo Gestão Rápida
+            </button>
+
+            <a href="admin.html" class="manage-mode-toggle" style="text-decoration: none; display: inline-block;">
+                🔒 Painel do Lojista (Admin Completo)
+            </a>
+
+            <div class="footer-signature">
+                Criado com <strong>Cardápio Digital</strong>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Barra Flutuante da Sacola (Amarela & Dark) -->
+    <div class="cart-floating-bar hidden" id="cartFloatingBar">
+        <div class="cart-info">
+            <div class="cart-icon-wrap">
+                🛒
+                <span class="cart-badge-count" id="cartBadgeCount">0</span>
+            </div>
+            <div class="cart-text-wrap">
+                <span class="cart-label">Ver Pedido</span>
+                <span class="cart-total-value" id="cartTotalValue">R$ 0,00</span>
+            </div>
+        </div>
+        <button class="cart-btn-action">
+            Avançar →
+        </button>
+    </div>
+
+    <!-- Modal da Sacola / Checkout -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-drawer">
+            <div class="drawer-header">
+                <div class="drawer-title">
+                    <span>🛍️</span> Sua Sacola de Compras
+                </div>
+                <button class="btn-close-modal" id="closeCartBtn">✕</button>
+            </div>
+
+            <div class="drawer-body">
+                <!-- Lista de itens adicionados -->
+                <div class="cart-items-list" id="cartItemsList">
+                    <!-- Itens renderizados via JS -->
+                </div>
+
+                <!-- Tipo de Pedido -->
+                <div>
+                    <div class="form-section-title">Forma de Retirada / Entrega</div>
+                    <div class="segmented-control">
+                        <button class="segmented-btn active" id="btnDelivery">🛵 Entrega em Casa</button>
+                        <button class="segmented-btn" id="btnPickup">🏪 Retirar no Balcão</button>
+                    </div>
+                </div>
+
+                <!-- Alerta de endereço da loja ao selecionar retirada -->
+                <div class="store-pickup-alert" id="pickupStoreAlert" style="display: none;">
+                    <!-- Preenchido via JS com o endereço da adega -->
+                </div>
+
+                <!-- Dados do Cliente & Endereço -->
+                <div>
+                    <div class="form-section-title">Seus Dados</div>
+                    <div class="input-group">
+                        <label class="input-label">Seu Nome *</label>
+                        <input type="text" id="custName" class="form-input" placeholder="Ex: Carlos Silva" required>
+                    </div>
+
+                    <div id="deliveryFields">
+                        <div class="grid-2-cols">
+                            <div class="input-group">
+                                <label class="input-label">Rua / Logradouro *</label>
+                                <input type="text" id="custStreet" class="form-input" placeholder="Ex: Rua das Flores">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Número *</label>
+                                <input type="text" id="custNumber" class="form-input" placeholder="Ex: 123">
+                            </div>
+                        </div>
+
+                        <div class="grid-2-cols">
+                            <div class="input-group">
+                                <label class="input-label">Bairro *</label>
+                                <input type="text" id="custNeighborhood" class="form-input" placeholder="Ex: Centro">
+                            </div>
+                            <div class="input-group">
+                                <label class="input-label">Complemento</label>
+                                <input type="text" id="custComplement" class="form-input" placeholder="Ex: Apto 42, Bloco B">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Forma de Pagamento -->
+                <div>
+                    <div class="form-section-title">Forma de Pagamento</div>
+                    <div class="payment-methods">
+                        <button class="payment-btn active" data-method="pix">
+                            <span style="font-size: 1.2rem;">💠</span>
+                            <span>Pix</span>
+                        </button>
+                        <button class="payment-btn" data-method="card">
+                            <span style="font-size: 1.2rem;">💳</span>
+                            <span>Cartão</span>
+                        </button>
+                        <button class="payment-btn" data-method="money">
+                            <span style="font-size: 1.2rem;">💵</span>
+                            <span>Dinheiro</span>
+                        </button>
+                    </div>
+
+                    <div id="changeBox" class="input-group" style="display: none; margin-top: 10px;">
+                        <label class="input-label">Precisa de troco para quanto?</label>
+                        <input type="number" id="custChange" class="form-input" placeholder="Ex: 100">
+                    </div>
+                </div>
+
+                <!-- Observações -->
+                <div class="input-group">
+                    <label class="input-label">Observações do Pedido</label>
+                    <input type="text" id="custNotes" class="form-input" placeholder="Ex: Trazer cerveja trincando de gelada">
+                </div>
+
+                <!-- Resumo de Valores -->
+                <div class="order-summary-box">
+                    <div class="summary-row">
+                        <span>Subtotal dos itens</span>
+                        <span id="summarySubtotal">R$ 0,00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Taxa de Entrega</span>
+                        <span id="summaryDeliveryFee">R$ 5,00</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Total do Pedido</span>
+                        <span id="summaryTotal">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="drawer-footer">
+                <button class="btn-whatsapp-order" id="btnSendWhatsApp">
+                    <span>Enviar Pedido pelo WhatsApp</span>
+                    <span>📲</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Horários e Informações -->
+    <div class="modal-overlay" id="infoModal">
+        <div class="modal-drawer">
+            <div class="drawer-header">
+                <div class="drawer-title">
+                    <span>ℹ️</span> Sobre a Adega do Bairro
+                </div>
+                <button class="btn-close-modal" id="closeInfoBtn">✕</button>
+            </div>
+            <div class="drawer-body">
+                <div style="text-align: center; margin-bottom: 12px;">
+                    <div class="store-avatar" style="margin: 0 auto 12px auto; width: 64px; height: 64px; font-size: 1.8rem;">A</div>
+                    <h2 style="font-size: 1.3rem;">Adega do Bairro</h2>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Bebidas geladas, combos e destilados</p>
+                </div>
+
+                <!-- Endereço no Modal -->
+                <div class="location-address-box" id="modalLocationBox" style="margin-bottom: 10px;">
+                    <!-- Preenchido via JS -->
+                </div>
+
+                <div class="hours-list">
+                    <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                        <span>🕒</span> Quadro de Horários
+                    </div>
+                    <div class="hours-row">
+                        <span>Segunda a Quinta:</span>
+                        <strong>16h às 0h</strong>
+                    </div>
+                    <div class="hours-row">
+                        <span>Sexta e Sábado:</span>
+                        <strong>16h às 2h</strong>
+                    </div>
+                    <div class="hours-row">
+                        <span>Domingo:</span>
+                        <strong>14h às 22h</strong>
+                    </div>
+                </div>
+
+                <div class="notice-card">
+                    <div class="notice-icon">⚠️</div>
+                    <div class="notice-content">
+                        <h4 class="notice-title">Legislação e Responsabilidade</h4>
+                        <p class="notice-desc">Proibida a venda de bebidas alcoólicas para menores de 18 anos (Lei Federal nº 13.106/2015). Documento oficial com foto pode ser exigido na entrega.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

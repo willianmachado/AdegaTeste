@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Painel do Lojista - Adega do Bairro</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- CSS Isolado do Admin -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+    <!-- ====================================================================
+         1. TELA DE LOGIN / BLOQUEIO POR PIN DE SEGURANÇA (PADRÃO: 1234)
+         ==================================================================== -->
+    <div class="login-screen" id="loginScreen">
+        <div class="login-card">
+            <div class="login-avatar">A</div>
+            <h1 class="login-title">Painel da Adega</h1>
+            <p class="login-subtitle">Digite o PIN de 4 dígitos para acessar a gestão</p>
+            
+            <div class="pin-input-group">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" id="pin1" autocomplete="off">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" id="pin2" autocomplete="off">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" id="pin3" autocomplete="off">
+                <input type="password" inputmode="numeric" maxlength="1" class="pin-digit" id="pin4" autocomplete="off">
+            </div>
+
+            <div class="login-error-msg" id="loginErrorMsg"></div>
+
+            <button type="button" class="btn-login" id="btnLoginSubmit">
+                Entrar no Painel →
+            </button>
+
+            <br>
+            <a href="index.html" class="btn-back-menu">
+                ← Voltar para o Cardápio Público
+            </a>
+        </div>
+    </div>
+
+    <!-- ====================================================================
+         2. PAINEL ADMINISTRATIVO PRINCIPAL (DESBLOQUEADO APÓS PIN 1234)
+         ==================================================================== -->
+    <div class="admin-container">
+        
+        <!-- Topo / Cabeçalho -->
+        <header class="admin-header">
+            <div class="admin-brand">
+                <div class="admin-avatar-small">A</div>
+                <div>
+                    <h2 style="font-size: 1.15rem; font-weight: 800;">Adega do Bairro</h2>
+                    <span style="font-size: 0.75rem; color: var(--accent-primary); font-weight: 600;">⚙️ Painel de Gestão & Produtos</span>
+                </div>
+            </div>
+
+            <div class="admin-header-actions">
+                <a href="index.html" class="btn-secondary" target="_blank" title="Abrir cardápio do cliente">
+                    👁️ Ver Cardápio
+                </a>
+                <button type="button" class="btn-logout" id="btnLogoutAdmin" title="Sair e bloquear">
+                    🔒 Bloquear
+                </button>
+            </div>
+        </header>
+
+        <!-- Seção: Integração com Google Planilhas -->
+        <section class="sheets-sync-card">
+            <div class="sheets-header">
+                <div class="sheets-title">
+                    <span>📊</span>
+                    <span>Integração Google Planilhas (Sheets)</span>
+                </div>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <button type="button" class="btn-secondary" id="btnUploadCsv" title="Importar arquivo CSV direto do computador">
+                        📁 Carregar Arquivo CSV
+                    </button>
+                    <button type="button" class="btn-secondary" id="btnExportSheets" title="Baixar dados no formato da planilha">
+                        📥 Exportar CSV
+                    </button>
+                </div>
+            </div>
+
+            <!-- Input oculto para carregar arquivo CSV do computador -->
+            <input type="file" id="csvFileInput" accept=".csv,text/csv" style="display: none;">
+
+            <div class="sheets-input-row">
+                <input type="url" id="sheetsUrlInput" class="sheets-input" placeholder="Cole o link da Planilha Google (ou use o botão 'Carregar Arquivo CSV')">
+                <button type="button" class="btn-sync" id="btnSyncSheets">
+                    🔄 Sincronizar Link
+                </button>
+            </div>
+            <p class="sheets-helper-text">
+                💡 <strong>Opção 1 (Mais fácil e sem erros):</strong> No Google Planilhas, vá em <em>Arquivo &gt; Fazer download &gt; Valores separados por vírgula (.csv)</em> e clique no botão <strong>📁 Carregar Arquivo CSV</strong> acima.<br>
+                💡 <strong>Opção 2 (Link):</strong> Para sincronizar direto pelo link, vá no Google Planilhas em <em>Arquivo &gt; Compartilhar &gt; Publicar na Web</em>, escolha formato <strong>CSV</strong> e clique em Publicar.
+            </p>
+        </section>
+
+        <!-- Métricas Rápidas -->
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value" id="metricTotal">0</div>
+                <div class="metric-label">Total de Itens</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="metricActive" style="color: var(--success);">0</div>
+                <div class="metric-label">Disponíveis</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="metricSoldOut" style="color: var(--danger);">0</div>
+                <div class="metric-label">Esgotados</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value" id="metricCats">0</div>
+                <div class="metric-label">Categorias</div>
+            </div>
+        </section>
+
+        <!-- Barra de Ações & Busca -->
+        <div class="actions-bar">
+            <div class="search-box-admin">
+                <span>🔍</span>
+                <input type="text" id="adminSearchInput" class="search-input-admin" placeholder="Pesquisar por nome, categoria ou descrição...">
+            </div>
+
+            <button type="button" class="btn-add-product" id="btnOpenAddModal">
+                <span>+</span> Adicionar Produto
+            </button>
+        </div>
+
+        <!-- Abas de Filtro por Categoria -->
+        <nav class="category-filter-tabs" id="categoryFilterTabs">
+            <!-- Abas geradas via JS -->
+        </nav>
+
+        <!-- Lista de Produtos (CRUD) -->
+        <main class="admin-items-list" id="adminProductsList">
+            <!-- Cards de itens gerados dinamicamente via JS -->
+        </main>
+    </div>
+
+    <!-- ====================================================================
+         3. MODAL DE CRIAÇÃO / EDIÇÃO DE PRODUTO
+         ==================================================================== -->
+    <div class="admin-modal-overlay" id="productModalOverlay">
+        <div class="admin-modal-card">
+            <div class="modal-header-admin">
+                <h3 class="modal-title-admin" id="modalProductTitle">Adicionar Produto</h3>
+                <button type="button" class="btn-close-admin" id="btnCloseModal">✕</button>
+            </div>
+
+            <form id="productFormAdmin">
+                <div class="form-group-admin">
+                    <label class="form-label-admin">Nome do Produto *</label>
+                    <input type="text" id="formItemTitle" class="form-input-admin" placeholder="Ex: Cerveja lata 350 ml" required>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group-admin">
+                        <label class="form-label-admin">Categoria *</label>
+                        <input type="text" id="formItemCategory" class="form-input-admin" list="categoriesDatalist" placeholder="Ex: Cervejas" required>
+                        <datalist id="categoriesDatalist"></datalist>
+                    </div>
+
+                    <div class="form-group-admin">
+                        <label class="form-label-admin">Preço (R$) *</label>
+                        <input type="text" id="formItemPrice" class="form-input-admin" placeholder="Ex: 5.00" required>
+                    </div>
+                </div>
+
+                <div class="form-group-admin">
+                    <label class="form-label-admin">Descrição / Observação</label>
+                    <textarea id="formItemDesc" class="form-input-admin" rows="2" placeholder="Ex: Pilsen, bem gelada."></textarea>
+                </div>
+
+                <div class="form-group-admin">
+                    <label class="form-label-admin">Caminho ou Link da Foto</label>
+                    <input type="text" id="formItemImage" class="form-input-admin" placeholder="Ex: assets/images/beer.png ou URL externa">
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group-admin">
+                        <label class="form-label-admin">Status de Venda</label>
+                        <select id="formItemStatus" class="form-input-admin">
+                            <option value="disponivel">🟢 Disponível para venda</option>
+                            <option value="esgotado">🔴 Esgotado no momento</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group-admin" style="justify-content: flex-end; padding-bottom: 8px;">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.85rem; cursor: pointer;">
+                            <input type="checkbox" id="formItemPopular" style="accent-color: var(--accent-primary); width: 18px; height: 18px;">
+                            <span>Marcar como Destaque ★</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-footer-admin">
+                    <button type="button" class="btn-cancel-modal" id="btnCancelModal">Cancelar</button>
+                    <button type="submit" class="btn-save-modal" id="btnSaveProduct">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts: lê a base inicial se necessário e executa a lógica do Admin -->
+    <script src="js/data.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

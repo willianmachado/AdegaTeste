@@ -1,0 +1,20 @@
+﻿Categoria,Produto,Descrição,Preço,Foto,Status,Destaque
+Cervejas,Cerveja lata 350 ml,Pilsen bem gelada,5.00,assets/images/beer.png,Disponível,Sim
+Cervejas,Cerveja long neck,330 ml. Pergunte as marcas do dia,8.00,,Disponível,Não
+Cervejas,Cerveja 600 ml,Garrafa retornável. Traga o casco,12.00,,Disponível,Não
+Cervejas,Fardo com 12 latas,12 latas de 350 ml gelado,55.00,assets/images/Fardo com 12 latas.jpg,Disponível,Sim
+Combos,Combo vodca,1 vodca 1L + 4 energéticos 2L + gelo,95.00,assets/images/combo-vodca.png,Disponível,Sim
+Combos,Combo gin tônica,1 gin 750ml + 6 águas tônicas + gelo,110.00,assets/images/combo-gin.png,Disponível,Sim
+Combos,Combo whisky,1 whisky 8 anos 1L + 2 energéticos 2L + gelo,160.00,assets/images/combo-whisky.png,Disponível,Sim
+Destilados,Vodca 1 litro,Garrafa fechada,45.00,,Disponível,Não
+Destilados,Gin 750 ml,Garrafa fechada,70.00,,Disponível,Não
+Destilados,Whisky 8 anos 1 litro,Garrafa fechada,120.00,,Disponível,Não
+Destilados,Cachaça 1 litro,Prata ou ouro,25.00,,Disponível,Não
+Vinhos,Vinho tinto seco 750 ml,Pergunte as opções da semana,45.00,assets/images/vinho-tinto.png,Disponível,Sim
+Vinhos,Vinho branco seco 750 ml,Pergunte as opções da semana,45.00,assets/images/Vinho branco seco 750 ml.png,Disponível,Não
+Vinhos,Espumante 750 ml,Brut ou moscatel,55.00,,Disponível,Não
+Sem álcool e gelo,Energético 2 litros,Pergunte os sabores,18.00,,Disponível,Não
+Sem álcool e gelo,Refrigerante 2 litros,Pergunte os sabores,13.00,assets/images/Refrigerante 2 litros.png,Disponível,Sim
+Sem álcool e gelo,Água tônica lata,350 ml,5.00,assets/images/Água tônica lata.png,Disponível,Não
+Sem álcool e gelo,Gelo 5 kg,Saco de gelo em cubos,15.00,assets/images/gelo.png,Disponível,Sim
+Sem álcool e gelo,Gelo de coco,Unidade vários sabores,3.00,assets/images/Gelo de coco.png,Disponível,Não
