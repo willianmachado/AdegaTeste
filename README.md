@@ -1,8 +1,9 @@
 # 🍷 Cardápio Digital - Adega do Bairro
 
 > 📄 **Guia completo para continuidade do projeto em novos chats:** Veja o arquivo [CONTEXTO_PROJETO.md](file:///mnt/500gbProM2/Antigravity/Projetos/teste1/CONTEXTO_PROJETO.md).
+> 🚀 **Repositório GitHub:** [willianmachado/AdegaTeste](https://github.com/willianmachado/AdegaTeste) • Deploy integrado na **Vercel**
 
-Cardápio digital mobile-first, com **Tema Dark padrão**, acentos em **Amarelo Dourado**, fotos no lado esquerdo de cada item e seção de **Localização da Adega**.
+Cardápio digital mobile-first, com **Tema Dark padrão**, acentos em **Amarelo Dourado**, fotos no lado esquerdo de cada item, seção de **Localização da Adega** e **Painel Administrativo** (`admin.html`) com sincronização Google Planilhas.
 
 ---
 
