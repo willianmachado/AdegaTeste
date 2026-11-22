@@ -1,69 +1,78 @@
-# 🍷 Cardápio Digital - Adega do Bairro
+# 🍷 Adega do Bairro - Cardápio Digital & Painel Administrativo
 
-> 📄 **Guia completo para continuidade do projeto em novos chats:** Veja o arquivo [CONTEXTO_PROJETO.md](file:///mnt/500gbProM2/Antigravity/Projetos/teste1/CONTEXTO_PROJETO.md).
-> 🚀 **Repositório GitHub:** [willianmachado/AdegaTeste](https://github.com/willianmachado/AdegaTeste) • Deploy integrado na **Vercel**
-
-Cardápio digital mobile-first, com **Tema Dark padrão**, acentos em **Amarelo Dourado**, fotos no lado esquerdo de cada item, seção de **Localização da Adega** e **Painel Administrativo** (`admin.html`) com sincronização Google Planilhas.
+Cardápio digital mobile-first, rápido e elegante para adegas, distribuidoras de bebidas e lojas de conveniência. O projeto permite que clientes façam pedidos diretamente pelo WhatsApp e que o lojista gerencie todo o catálogo de produtos de forma simples — seja pelo painel administrativo com senha PIN ou sincronizando diretamente com uma **Planilha Google**.
 
 ---
 
-## 📋 Resumo das Categorias e Fotos Vinculadas
+## 📱 O que é o Projeto?
 
-| Categoria | Itens Cadastrados | Preço | Foto no Lado Esquerdo |
-| :--- | :--- | :--- | :---: |
-| **Aviso Legal** | Proibida a venda de bebidas para menores de 18 anos (Lei 13.106/2015) | Informativo | — |
-| **Cervejas** | Cerveja lata 350 ml (Pilsen, bem gelada) | R$ 5,00 | `beer.png` |
-| | Cerveja long neck 330 ml | R$ 8,00 | — |
-| | Cerveja 600 ml (Garrafa retornável) | R$ 12,00 | — |
-| | Fardo com 12 latas (350 ml) | R$ 55,00 | `Fardo com 12 latas.jpg` |
-| **Combos** | Combo vodca (1L vodca + 4 energéticos 2L + gelo) | R$ 95,00 | `combo-vodca.png` |
-| | Combo gin tônica (750ml gin + 6 tônicas + gelo) | R$ 110,00 | `combo-gin.png` |
-| | Combo whisky (1L whisky 8 anos + 2 energéticos 2L + gelo) | R$ 160,00 | `combo-whisky.png` |
-| **Destilados** | Vodca 1 litro (Garrafa fechada) | R$ 45,00 | — |
-| | Gin 750 ml (Garrafa fechada) | R$ 70,00 | — |
-| | Whisky 8 anos 1 litro (Garrafa fechada) | R$ 120,00 | — |
-| | Cachaça 1 litro (Prata ou ouro) | R$ 25,00 | — |
-| **Vinhos** | Vinho tinto seco 750 ml | R$ 45,00 | `vinho-tinto.png` |
-| | Vinho branco seco 750 ml | R$ 45,00 | `Vinho branco seco 750 ml.png` |
-| | Espumante 750 ml (Brut ou moscatel) | R$ 55,00 | — |
-| **Sem álcool e gelo** | Energético 2 litros | R$ 18,00 | — |
-| | Refrigerante 2 litros | R$ 13,00 | `Refrigerante 2 litros.png` |
-| | Água tônica lata 350 ml | R$ 5,00 | `Água tônica lata.png` |
-| | Gelo 5 kg (Saco em cubos) | R$ 15,00 | `gelo.png` |
-| | Gelo de coco (Unidade) | R$ 3,00 | `Gelo de coco.png` |
+Uma solução completa de cardápio online com foco em alta conversão e facilidade de uso para clientes e comerciantes:
+
+- **Experiência do Cliente (`index.html`):**
+  - Design moderno com **Tema Dark** e acentos em amarelo dourado.
+  - Navegação intuitiva com abas de categorias deslizantes.
+  - Produtos organizados com fotos, descrições, preços e tags de destaque.
+  - Sacola de compras flutuante com cálculo automático de subtotal e taxa de entrega.
+  - Opção de **Entrega (Delivery)** ou **Retirada no Balcão**.
+  - Finalização de pedido com 1 clique enviando mensagem pronta e formatada para o **WhatsApp** da adega.
+  - Informações de horário de funcionamento (status aberto/fechado dinâmico) e card de localização com link do Google Maps e botão de copiar endereço.
+
+- **Painel Administrativo (`admin.html`):**
+  - Tela de acesso protegida por senha **PIN** (padrão: `1234`).
+  - Gestão de produtos (adicionar, editar preço, marcar como esgotado ou excluir).
+  - **Sincronização com Google Planilhas (Sheets):** permite que pessoas sem conhecimento de sistema atualizem preços e produtos direto de uma planilha comum.
+  - Suporte a **Importação e Exportação de arquivos CSV**.
 
 ---
 
-## 📍 Localização da Loja
+## 🛠️ Como foi Feito?
 
-O endereço e as configurações de entrega estão disponíveis no card da página e no arquivo `js/data.js`:
+O projeto foi desenvolvido priorizando **simplicidade, performance extrema e custo zero de hospedagem**:
 
-```javascript
-location: {
-    street: "Rua das Bebidas",
-    number: "123",
-    neighborhood: "Bairro Alto",
-    city: "São Paulo",
-    state: "SP",
-    cep: "01234-567",
-    reference: "Próximo à Praça Central • Em frente ao Posto Ipiranga",
-    fullAddress: "Rua das Bebidas, 123 - Bairro Alto, São Paulo - SP",
-    googleMapsUrl: "https://maps.google.com/?q=Rua+das+Bebidas,+123+-+Bairro+Alto,+São+Paulo+-+SP",
-    deliveryRadius: "Entregamos num raio de até 8 km em até 40 min"
-}
+- **Linguagens e Tecnologias:**
+  - **HTML5 Semântico:** Estrutura limpa, acessível e otimizada para SEO local.
+  - **CSS3 Moderno:** Variáveis CSS (design tokens), Flexbox, CSS Grid, scrollbars estilizadas e suporte nativo a temas escuros.
+  - **JavaScript Vanilla (ES6+):** Código puro sem dependências pesadas ou frameworks (sem React, Vue ou Angular), garantindo carregamento instantâneo em qualquer celular ou conexão 4G/3G.
+
+- **Arquitetura & Persistência de Dados:**
+  - **`data.js`:** Base padrão de dados com informações da loja, horários e produtos iniciais.
+  - **`localStorage`:** Persistência no navegador para armazenar as alterações feitas no painel administrativo sem necessidade de banco de dados pago.
+  - **Google Sheets API / JSONP:** Leitura de dados remota para atualização via planilha sem custos de servidor.
+
+- **Hospedagem & Deploy:**
+  - Arquitetura 100% estática (Jamstack), pronta para rodar gratuitamente na **Vercel**, **Netlify** ou **GitHub Pages**.
+  - Integração contínua: qualquer atualização enviada para a branch `main` do GitHub atualiza o site no ar automaticamente.
+
+---
+
+## 📂 Estrutura de Pastas
+
+```text
+├── index.html                   # Cardápio interativo do cliente
+├── admin.html                   # Painel administrativo do lojista
+├── planilha_cardapio_adega.csv  # Modelo de planilha pronto para o Google Sheets
+├── css/
+│   ├── style.css                # Estilos do cardápio do cliente
+│   └── admin.css                # Estilos do painel administrativo
+├── js/
+│   ├── app.js                   # Lógica da sacola, status e pedidos via WhatsApp
+│   ├── admin.js                 # Lógica do CRUD, PIN e sincronização Google Sheets
+│   └── data.js                  # Dados padrão da loja, categorias e produtos
+├── assets/
+│   └── images/                  # Fotos dos produtos da adega
+└── referencias/                 # Documentos de apoio e briefing inicial
 ```
 
-- **Pill no Topo:** `📍 Onde Estamos` desliza suavemente até o card de localização.
-- **Card na Página:** Contém botão direto para o **Google Maps** e botão para **Copiar Endereço**.
-- **Checkout Inteligente:** Ao selecionar "Retirar no Balcão", exibe o endereço completo para o cliente retirar seu pedido.
-
 ---
 
-## 🚀 Como Executar
+## 🚀 Como Rodar Localmente
 
-Abra o arquivo `index.html` diretamente em seu navegador ou suba um servidor estático:
+Basta clonar o repositório e abrir o `index.html` ou iniciar um servidor estático simples:
 
 ```bash
+# Iniciar servidor local com Python
 python3 -m http.server 8080
 ```
-Acesse: `http://localhost:8080`
+
+- **Cardápio do Cliente:** `http://localhost:8080`
+- **Painel de Gestão:** `http://localhost:8080/admin.html` (PIN padrão: `1234`)
