@@ -195,6 +195,31 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 16px;
+    transition: max-width var(--transition-fast);
+}
+
+@media (min-width: 1024px) {
+    .admin-container {
+        max-width: 1120px;
+        padding: 28px 20px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+    }
+
+    .admin-header {
+        padding: 18px 24px;
+    }
+
+    .sheets-sync-card {
+        padding: 20px 24px;
+    }
+
+    .admin-item-card {
+        padding: 16px 20px;
+    }
 }
 
 /* Barra Superior */

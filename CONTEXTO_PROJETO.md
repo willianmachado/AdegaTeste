@@ -58,9 +58,12 @@ Aplicação web **mobile-first, responsiva e de alta conversão** de um cardápi
    - Atalho no topo `📍 Onde Estamos` que desliza até o card.
    - Na sacola, ao selecionar "Retirar no Balcão", o endereço de retirada é destacado para o cliente.
 
-5. **Lapidações de Interface:**
+5. **Lapidações de Interface & Responsividade Desktop (Modo PC):**
    - **Abas Deslizantes:** Indicadores visuais de rolagem lateral (gradientes fade e setas pulsantes) com centralização suave (`scrollIntoView`) ao navegar.
    - **Scrollbars Dark:** Eliminação da barra clara padrão do navegador nos modais.
+   - **Compatibilidade PC / Telas Grandes:**
+     - **Cardápio Público (`index.html`):** Em telas desktop (`>= 768px`), o site renderiza uma coluna centralizada estilo App Premium (`max-width: 600px`), com bordas arredondadas, sombras de profundidade e background radial elegante. A barra de sacola flutuante e os modais se adaptam perfeitamente ao centro da tela sem esticar ou quebrar a proporção.
+     - **Painel Admin (`admin.html`):** Em telas desktop (`>= 1024px`), expande para visualização ampla em dashboard (`max-width: 1120px`), organizando métricas em 4 colunas e aproveitando o espaço para gestão de produtos.
 
 ---
 
