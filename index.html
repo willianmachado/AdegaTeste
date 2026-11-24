@@ -66,103 +66,147 @@
             </div>
         </div>
 
-        <!-- Campo de Pesquisa -->
-        <div class="search-container">
-            <div class="search-box">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="searchInput" class="search-input" placeholder="Buscar cervejas, combos, destilados, vinhos..." autocomplete="off">
-                <button id="searchClear" class="search-clear" title="Limpar">✕</button>
-            </div>
-        </div>
-
-        <!-- Abas de Categorias Fixas com Indicador de Rolagem Lateral -->
-        <nav class="sticky-tabs-wrapper">
-            <div class="tabs-nav-container">
-                <button class="tabs-scroll-arrow left" id="tabsScrollLeft" title="Rolar categorias para esquerda" aria-label="Rolar para esquerda">
-                    ‹
-                </button>
-                <div class="tabs-fade-left" id="tabsFadeLeft"></div>
-                
-                <div class="tabs-scroll" id="tabsScroll">
-                    <!-- Abas geradas dinamicamente via JS -->
-                </div>
-                
-                <div class="tabs-fade-right" id="tabsFadeRight"></div>
-                <button class="tabs-scroll-arrow right" id="tabsScrollRight" title="Ver mais categorias" aria-label="Mais categorias">
-                    <span>›</span>
-                </button>
-            </div>
-        </nav>
-
-        <!-- Conteúdo do Cardápio -->
-        <main class="menu-content" id="menuContent">
-            <!-- Categorias e Itens gerados dinamicamente via JS com fotos à esquerda -->
-        </main>
-
-        <!-- Seção / Card de Localização da Loja -->
-        <section class="store-location-card" id="storeLocationCard">
-            <div class="location-card-header">
-                <div class="location-icon-badge">📍</div>
-                <div>
-                    <h2 class="location-card-title">Localização da Adega</h2>
-                    <p class="location-card-subtitle">Retirada no balcão e base para entregas</p>
-                </div>
-            </div>
-
-            <div class="location-card-body">
-                <div class="location-address-box" id="locationCardAddress">
-                    <!-- Endereço renderizado dinamicamente via JS -->
+        <!-- Grid Principal (Desktop: Menu à esquerda + Sacola fixa à direita) -->
+        <div class="desktop-layout-grid">
+            <div class="main-menu-column">
+                <!-- Campo de Pesquisa -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" id="searchInput" class="search-input" placeholder="Buscar cervejas, combos, destilados, vinhos..." autocomplete="off">
+                        <button id="searchClear" class="search-clear" title="Limpar">✕</button>
+                    </div>
                 </div>
 
-                <div class="location-actions">
-                    <a href="https://maps.google.com/?q=Adega+do+Bairro" target="_blank" class="btn-location-map" id="btnLocationMaps">
-                        🗺️ Abrir no Maps
-                    </a>
-                    <button class="btn-copy-address" id="btnCopyAddress" onclick="copyStoreAddress()">
-                        📋 Copiar Endereço
+                <!-- Abas de Categorias Fixas com Indicador de Rolagem Lateral -->
+                <nav class="sticky-tabs-wrapper">
+                    <div class="tabs-nav-container">
+                        <button class="tabs-scroll-arrow left" id="tabsScrollLeft" title="Rolar categorias para esquerda" aria-label="Rolar para esquerda">
+                            ‹
+                        </button>
+                        <div class="tabs-fade-left" id="tabsFadeLeft"></div>
+                        
+                        <div class="tabs-scroll" id="tabsScroll">
+                            <!-- Abas geradas dinamicamente via JS -->
+                        </div>
+                        
+                        <div class="tabs-fade-right" id="tabsFadeRight"></div>
+                        <button class="tabs-scroll-arrow right" id="tabsScrollRight" title="Ver mais categorias" aria-label="Mais categorias">
+                            <span>›</span>
+                        </button>
+                    </div>
+                </nav>
+
+                <!-- Conteúdo do Cardápio -->
+                <main class="menu-content" id="menuContent">
+                    <!-- Categorias e Itens gerados dinamicamente via JS com fotos à esquerda -->
+                </main>
+
+                <!-- Seção / Card de Localização da Loja -->
+                <section class="store-location-card" id="storeLocationCard">
+                    <div class="location-card-header">
+                        <div class="location-icon-badge">📍</div>
+                        <div>
+                            <h2 class="location-card-title">Localização da Adega</h2>
+                            <p class="location-card-subtitle">Retirada no balcão e base para entregas</p>
+                        </div>
+                    </div>
+
+                    <div class="location-card-body">
+                        <div class="location-address-box" id="locationCardAddress">
+                            <!-- Endereço renderizado dinamicamente via JS -->
+                        </div>
+
+                        <div class="location-actions">
+                            <a href="https://maps.google.com/?q=Adega+do+Bairro" target="_blank" class="btn-location-map" id="btnLocationMaps">
+                                🗺️ Abrir no Maps
+                            </a>
+                            <button class="btn-copy-address" id="btnCopyAddress" onclick="copyStoreAddress()">
+                                📋 Copiar Endereço
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rodapé Informativo -->
+                <footer class="footer-info">
+                    <div class="footer-brand">Adega do Bairro</div>
+                    
+                    <div class="hours-list">
+                        <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                            <span>🕒</span> Horários de Atendimento
+                        </div>
+                        <div class="hours-row">
+                            <span>Segunda a Quinta:</span>
+                            <strong>16h às 0h</strong>
+                        </div>
+                        <div class="hours-row">
+                            <span>Sexta e Sábado:</span>
+                            <strong>16h às 2h</strong>
+                        </div>
+                        <div class="hours-row">
+                            <span>Domingo:</span>
+                            <strong>14h às 22h</strong>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 0.78rem; color: var(--text-muted); max-width: 380px;">
+                        Bebidas alcoólicas proibidas para menores de 18 anos (Lei 13.106/2015).
+                    </p>
+
+                    <button class="manage-mode-toggle" id="toggleManageModeBtn" onclick="toggleManageMode()">
+                        ⚙️ Modo Gestão Rápida
                     </button>
-                </div>
-            </div>
-        </section>
 
-        <!-- Rodapé Informativo -->
-        <footer class="footer-info">
-            <div class="footer-brand">Adega do Bairro</div>
-            
-            <div class="hours-list">
-                <div style="font-weight: 700; color: var(--text-primary); margin-bottom: 4px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                    <span>🕒</span> Horários de Atendimento
-                </div>
-                <div class="hours-row">
-                    <span>Segunda a Quinta:</span>
-                    <strong>16h às 0h</strong>
-                </div>
-                <div class="hours-row">
-                    <span>Sexta e Sábado:</span>
-                    <strong>16h às 2h</strong>
-                </div>
-                <div class="hours-row">
-                    <span>Domingo:</span>
-                    <strong>14h às 22h</strong>
-                </div>
+                    <a href="admin.html" class="manage-mode-toggle" style="text-decoration: none; display: inline-block;">
+                        🔒 Painel do Lojista (Admin Completo)
+                    </a>
+
+                    <div class="footer-signature">
+                        Criado com <strong>Cardápio Digital</strong>
+                    </div>
+                </footer>
             </div>
 
-            <p style="font-size: 0.78rem; color: var(--text-muted); max-width: 380px;">
-                Bebidas alcoólicas proibidas para menores de 18 anos (Lei 13.106/2015).
-            </p>
+            <!-- Sidebar Fixa da Sacola (Exibida no Desktop >= 1024px) -->
+            <aside class="desktop-cart-sidebar" id="desktopCartSidebar">
+                <div class="desktop-cart-card">
+                    <div class="desktop-cart-header">
+                        <div class="desktop-cart-title">
+                            <span>🛍️</span>
+                            <span>Sua Sacola</span>
+                        </div>
+                        <span class="desktop-cart-badge" id="desktopCartBadge">0 itens</span>
+                    </div>
 
-            <button class="manage-mode-toggle" id="toggleManageModeBtn" onclick="toggleManageMode()">
-                ⚙️ Modo Gestão Rápida
-            </button>
+                    <div class="desktop-cart-body" id="desktopCartItemsList">
+                        <!-- Itens renderizados via JS -->
+                    </div>
 
-            <a href="admin.html" class="manage-mode-toggle" style="text-decoration: none; display: inline-block;">
-                🔒 Painel do Lojista (Admin Completo)
-            </a>
+                    <div class="desktop-cart-footer" id="desktopCartFooter">
+                        <div class="desktop-cart-summary">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="desktopSummarySubtotal">R$ 0,00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Entrega estimada</span>
+                                <span id="desktopSummaryDeliveryFee">R$ 5,00</span>
+                            </div>
+                            <div class="summary-row total-row">
+                                <span>Total</span>
+                                <span id="desktopSummaryTotal">R$ 0,00</span>
+                            </div>
+                        </div>
 
-            <div class="footer-signature">
-                Criado com <strong>Cardápio Digital</strong>
-            </div>
-        </footer>
+                        <button class="btn-desktop-checkout" id="btnDesktopCheckout" onclick="document.getElementById('cartModal').classList.add('active')">
+                            <span>Finalizar Pedido</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
 
     <!-- Barra Flutuante da Sacola (Amarela & Dark) -->

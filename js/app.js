@@ -445,6 +445,7 @@ function renderCartDrawer(totalItems, subtotal) {
         if (subtotalEl) subtotalEl.textContent = formatCurrency(0);
         if (deliveryFeeEl) deliveryFeeEl.textContent = formatCurrency(0);
         if (totalEl) totalEl.textContent = formatCurrency(0);
+        renderDesktopCart(0, 0, '', 0, 0);
         return;
     }
 
@@ -500,6 +501,49 @@ function renderCartDrawer(totalItems, subtotal) {
             : (deliveryFee === 0 ? 'Grátis' : formatCurrency(deliveryFee));
     }
     if (totalEl) totalEl.textContent = formatCurrency(finalTotal);
+
+    renderDesktopCart(totalItems, subtotal, itemsHtml, deliveryFee, finalTotal);
+}
+
+// Renderiza a Sidebar Fixa da Sacola no Desktop
+function renderDesktopCart(totalItems, subtotal, itemsHtml, deliveryFee, finalTotal) {
+    const desktopList = document.getElementById('desktopCartItemsList');
+    const desktopBadge = document.getElementById('desktopCartBadge');
+    const desktopSubtotal = document.getElementById('desktopSummarySubtotal');
+    const desktopDelivery = document.getElementById('desktopSummaryDeliveryFee');
+    const desktopTotal = document.getElementById('desktopSummaryTotal');
+    const btnCheckout = document.getElementById('btnDesktopCheckout');
+
+    if (!desktopList) return;
+
+    if (desktopBadge) {
+        desktopBadge.textContent = totalItems === 1 ? '1 item' : `${totalItems} itens`;
+    }
+
+    if (totalItems === 0) {
+        desktopList.innerHTML = `
+            <div class="desktop-cart-empty">
+                <div class="desktop-cart-empty-icon">🛒</div>
+                <p style="font-size: 0.88rem; font-weight: 600; color: var(--text-secondary);">Sua sacola está vazia</p>
+                <p style="font-size: 0.78rem;">Adicione cervejas, combos ou destilados do cardápio ao lado.</p>
+            </div>
+        `;
+        if (desktopSubtotal) desktopSubtotal.textContent = formatCurrency(0);
+        if (desktopDelivery) desktopDelivery.textContent = formatCurrency(0);
+        if (desktopTotal) desktopTotal.textContent = formatCurrency(0);
+        if (btnCheckout) btnCheckout.disabled = true;
+        return;
+    }
+
+    desktopList.innerHTML = itemsHtml;
+    if (desktopSubtotal) desktopSubtotal.textContent = formatCurrency(subtotal);
+    if (desktopDelivery) {
+        desktopDelivery.textContent = state.deliveryType === 'pickup'
+            ? 'Grátis (Balcão)'
+            : (deliveryFee === 0 ? 'Grátis' : formatCurrency(deliveryFee));
+    }
+    if (desktopTotal) desktopTotal.textContent = formatCurrency(finalTotal);
+    if (btnCheckout) btnCheckout.disabled = false;
 }
 
 // Configuração dos Event Listeners

@@ -62,7 +62,9 @@ Aplicação web **mobile-first, responsiva e de alta conversão** de um cardápi
    - **Abas Deslizantes:** Indicadores visuais de rolagem lateral (gradientes fade e setas pulsantes) com centralização suave (`scrollIntoView`) ao navegar.
    - **Scrollbars Dark:** Eliminação da barra clara padrão do navegador nos modais.
    - **Compatibilidade PC / Telas Grandes:**
-     - **Cardápio Público (`index.html`):** Em telas desktop (`>= 768px`), o site renderiza uma coluna centralizada estilo App Premium (`max-width: 600px`), com bordas arredondadas, sombras de profundidade e background radial elegante. A barra de sacola flutuante e os modais se adaptam perfeitamente ao centro da tela sem esticar ou quebrar a proporção.
+     - **Cardápio Público (`index.html`):**
+       - Em tablets (`>= 768px`), expande para `760px` com os produtos organizados em **grid de 2 colunas**.
+       - Em desktops (`>= 1024px` e `>= 1360px`), expande para layout completo (`1200px` a `1280px`) com **grid de 2 colunas de produtos** à esquerda e **Sidebar Fixa da Sacola (`360px`, `position: sticky`)** à direita, exibindo itens, quantidades e resumo em tempo real (ocultando a barra flutuante mobile e abrindo o modal de checkout centralizado ao clicar em "Finalizar Pedido").
      - **Painel Admin (`admin.html`):** Em telas desktop (`>= 1024px`), expande para visualização ampla em dashboard (`max-width: 1120px`), organizando métricas em 4 colunas e aproveitando o espaço para gestão de produtos.
 
 ---
